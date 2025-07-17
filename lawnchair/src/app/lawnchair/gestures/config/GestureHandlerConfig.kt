@@ -47,7 +47,7 @@ sealed class GestureHandlerConfig {
     data object Recents : Simple(R.string.gesture_handler_recents, ::RecentsGestureHandler)
 
     @Serializable
-    @SerialName("openNotificationdata")
+    @SerialName("openNotifications")
     data object OpenNotifications : Simple(R.string.gesture_handler_open_notifications, ::OpenNotificationsHandler)
 
     @Serializable
