@@ -40,7 +40,7 @@ class VerticalSwipeTouchController(
                 .onEach { overrideSwipeUp = it != prefs.swipeUpGestureHandler.defaultValue }
                 .launchIn(this)
             prefs.swipeDownGestureHandler.get()
-                .onEach { overrideSwipeDown = it != prefs.swipeDownGestureHandler.defaultValue }
+                .onEach { overrideSwipeDown = true }
                 .launchIn(this)
         }
     }
