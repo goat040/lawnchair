@@ -74,9 +74,6 @@ class VerticalSwipeTouchController(
 
     override fun onDragStart(start: Boolean) {
         triggered = false
-        if (getSwipeDirection() != 0) {
-            launcher.workspace.lock(true)
-        }
     }
 
     override fun onDrag(displacement: PointF, motionEvent: MotionEvent): Boolean {
@@ -95,7 +92,6 @@ class VerticalSwipeTouchController(
 
     override fun onDragEnd(velocity: PointF) {
         detector.finishedScrolling()
-        launcher.workspace.unlock()
     }
 
     private fun getSwipeDirection(): Int {

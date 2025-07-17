@@ -161,15 +161,12 @@ public class AllAppsSwipeController extends AbstractStateChangeTouchController {
         if (mLauncher.isInState(ALL_APPS) && !mLauncher.getAppsView().shouldContainerScroll(ev)) {
             return false;
         }
-        if (mLauncher.isWorkspaceLocked()) {
-            return false;
-        }
         return true;
     }
 
     @Override
     protected LauncherState getTargetState(LauncherState fromState, boolean isDragTowardPositive) {
-        if (fromState == NORMAL && shouldOpenAllApps(isDragTowardPositive) && !mLauncher.isWorkspaceLocked()) {
+        if (fromState == NORMAL && shouldOpenAllApps(isDragTowardPositive)) {
             return ALL_APPS;
         } else if (fromState == ALL_APPS && !isDragTowardPositive) {
             return NORMAL;

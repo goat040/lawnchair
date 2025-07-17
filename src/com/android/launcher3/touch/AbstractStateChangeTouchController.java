@@ -447,6 +447,9 @@ public abstract class AbstractStateChangeTouchController
     }
 
     protected boolean shouldOpenAllApps(boolean isDragTowardPositive) {
+        if (mLauncher.isWorkspaceLocked()) {
+            return false;
+        }
         return (isDragTowardPositive && !mIsTrackpadReverseScroll)
                 || (!isDragTowardPositive && mIsTrackpadReverseScroll);
     }
