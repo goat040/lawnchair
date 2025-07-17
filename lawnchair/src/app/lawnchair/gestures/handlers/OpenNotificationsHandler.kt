@@ -2,6 +2,7 @@ package app.lawnchair.gestures.handlers
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import app.lawnchair.LawnchairLauncher
 import java.lang.reflect.InvocationTargetException
 
@@ -15,13 +16,13 @@ class OpenNotificationsHandler(context: Context) : GestureHandler(context) {
                 .apply { isAccessible = true }
                 .invoke(context.getSystemService("statusbar"))
         } catch (e: IllegalAccessException) {
-            e.printStackTrace()
+            Log.e("OpenNotifications", "Failed to expand notifications", e)
         } catch (e: InvocationTargetException) {
-            e.printStackTrace()
+            Log.e("OpenNotifications", "Failed to expand notifications", e)
         } catch (e: NoSuchMethodException) {
-            e.printStackTrace()
+            Log.e("OpenNotifications", "Failed to expand notifications", e)
         } catch (e: ClassNotFoundException) {
-            e.printStackTrace()
+            Log.e("OpenNotifications", "Failed to expand notifications", e)
         }
     }
 }

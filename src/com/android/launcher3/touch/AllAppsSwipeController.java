@@ -161,6 +161,9 @@ public class AllAppsSwipeController extends AbstractStateChangeTouchController {
         if (mLauncher.isInState(ALL_APPS) && !mLauncher.getAppsView().shouldContainerScroll(ev)) {
             return false;
         }
+        if (mLauncher.isWorkspaceLocked()) {
+            return false;
+        }
         return true;
     }
 
