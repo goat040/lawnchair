@@ -30,6 +30,7 @@ import com.android.launcher3.graphics.LauncherPreviewRenderer;
 import com.android.launcher3.pm.UserCache;
 import com.android.launcher3.util.MainThreadInitializedObject;
 import com.android.launcher3.util.SafeCloseable;
+import app.lawnchair.icons.IconAdapter;
 import com.android.launcher3.util.Themes;
 import com.android.launcher3.util.UserIconInfo;
 
@@ -58,7 +59,7 @@ public class LauncherIcons extends BaseIconFactory implements AutoCloseable {
 
     private final ConcurrentLinkedQueue<LauncherIcons> mPool;
 
-    private MonochromeIconFactory mMonochromeIconFactory;
+    private IconAdapter mIconAdapter;
 
     public boolean mMonoIconEnabled = false;
 
@@ -84,10 +85,10 @@ public class LauncherIcons extends BaseIconFactory implements AutoCloseable {
         if (mono != null || !Flags.forceMonochromeAppIcons()) {
             return mono;
         }
-        if (mMonochromeIconFactory == null) {
-            mMonochromeIconFactory = new MonochromeIconFactory(mIconBitmapSize);
+        if (mIconAdapter == null) {
+            mIconAdapter = new IconAdapter(mContext, mIconBitmapSize);
         }
-        return mMonochromeIconFactory.wrap(base);
+        return mIconAdapter.wrap(base);
     }
 
     @NonNull
