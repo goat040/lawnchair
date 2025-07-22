@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.AdaptiveIconDrawable
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import androidx.core.graphics.drawable.toBitmap
@@ -18,9 +19,9 @@ class IntelligentAdaptiveIconDrawable(
         Palette.from(bitmap).generate { palette ->
             val dominantColor = palette?.dominantSwatch?.rgb ?: Color.WHITE
             val blendedColor = blendColor(dominantColor, Color.WHITE, 0.7f)
-            background = ColorDrawable(blendedColor)
+            var background = ColorDrawable(blendedColor)
             val newBitmap = overrideEdgeColors(bitmap, blendedColor)
-            foreground = BitmapDrawable(newBitmap)
+            var foreground = BitmapDrawable(newBitmap)
         }
     }
 
