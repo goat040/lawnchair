@@ -163,6 +163,7 @@ class LawnchairIconProvider @JvmOverloads constructor(
             super.getIconWithOverrides(packageName, component, user, iconDpi, fallback)
 
         if ((context.shouldTintIconPackBackgrounds() && defaultIcon is AdaptiveIconDrawable)) {
+            val intelligentIconAdapter = PreferenceManager.getInstance(context).intelligentIconAdapter.get()
             if (Utilities.ATLEAST_T && defaultIcon.monochrome != null) {
                 defaultIcon = defaultIcon.monochrome
                 return if (td != null) {
@@ -172,10 +173,16 @@ class LawnchairIconProvider @JvmOverloads constructor(
                     if (context.shouldTransparentBGIcons()) {
                         return defaultIcon.apply { setTint(themedColors[1]) }
                     }
-                    CustomAdaptiveIconDrawable(
-                        ColorDrawable(themedColors[0]),
-                        defaultIcon.apply { setTint(themedColors[1]) },
-                    )
+                    if (intelligentIconAdapter) {
+                        IntelligentAdaptiveIconDrawable(
+                            foregroundDrawable = defaultIcon.apply { setTint(themedColors[1]) },
+                        )
+                    } else {
+                        CustomAdaptiveIconDrawable(
+                            ColorDrawable(themedColors[0]),
+                            defaultIcon.apply { setTint(themedColors[1]) },
+                        )
+                    }
                 }
             } else {
                 val iconCompat = ThemedIconCompat.getThemedIcon(context, componentName) ?: return defaultIcon
@@ -187,10 +194,16 @@ class LawnchairIconProvider @JvmOverloads constructor(
                     if (context.shouldTransparentBGIcons()) {
                         return iconCompat.apply { setTint(themedColors[1]) }
                     }
-                    CustomAdaptiveIconDrawable(
-                        ColorDrawable(themedColors[0]),
-                        iconCompat.apply { setTint(themedColors[1]) },
-                    )
+                    if (intelligentIconAdapter) {
+                        IntelligentAdaptiveIconDrawable(
+                            foregroundDrawable = iconCompat.apply { setTint(themedColors[1]) },
+                        )
+                    } else {
+                        CustomAdaptiveIconDrawable(
+                            ColorDrawable(themedColors[0]),
+                            iconCompat.apply { setTint(themedColors[1]) },
+                        )
+                    }
                 }
             }
         }
@@ -210,15 +223,18 @@ class LawnchairIconProvider @JvmOverloads constructor(
     }
 
     override fun getIcon(info: ActivityInfo?): Drawable {
-        return CustomAdaptiveIconDrawable.wrapNonNull(super.getIcon(info))
+        val icon = super.getIcon(info)
+        return if (icon is IntelligentAdaptiveIconDrawable) icon else CustomAdaptiveIconDrawable.wrapNonNull(icon)
     }
 
     override fun getIcon(info: ActivityInfo?, iconDpi: Int): Drawable {
-        return CustomAdaptiveIconDrawable.wrapNonNull(super.getIcon(info, iconDpi))
+        val icon = super.getIcon(info, iconDpi)
+        return if (icon is IntelligentAdaptiveIconDrawable) icon else CustomAdaptiveIconDrawable.wrapNonNull(icon)
     }
 
     override fun getIcon(info: LauncherActivityInfo?, iconDpi: Int): Drawable {
-        return CustomAdaptiveIconDrawable.wrapNonNull(super.getIcon(info, iconDpi))
+        val icon = super.getIcon(info, iconDpi)
+        return if (icon is IntelligentAdaptiveIconDrawable) icon else CustomAdaptiveIconDrawable.wrapNonNull(icon)
     }
 
     override fun getSystemStateForPackage(systemState: String, packageName: String): String {
