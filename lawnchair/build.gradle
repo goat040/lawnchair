@@ -1,3 +1,13 @@
 plugins {
     id 'com.android.application'
+    id 'androidx.baselineprofile'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose'
+    id 'org.jetbrains.kotlin.plugin.parcelize'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+    id "com.google.devtools.ksp"
+    id 'com.google.protobuf'
+    id 'app.cash.licensee'
+    id 'dev.rikka.tools.refine'
+    id 'com.diffplug.spotless'
 }
