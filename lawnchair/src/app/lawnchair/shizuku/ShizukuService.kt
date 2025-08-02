@@ -37,8 +37,9 @@ class ShizukuService : ShizukuService() {
         try {
             val systemUi = ShizukuSystemUiProxy.getSystemUi(this)
             val component = systemUi.javaClass.getMethod("getComponent").invoke(systemUi)
-            val method = component.javaClass.methods.find { it.returnType.name == className }
-            return method?.invoke(component) as IBinder?
+            val unfoldComponent = component.javaClass.getMethod("getUnfoldComponent").invoke(component)
+            val method = unfoldComponent.javaClass.methods.find { it.returnType.name == className }
+            return method?.invoke(unfoldComponent) as IBinder?
         } catch (e: Exception) {
             Log.e("ShizukuService", "Failed to get binder for $className", e)
             return null
