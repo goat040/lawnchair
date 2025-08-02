@@ -121,6 +121,10 @@ public class SystemUiProxy implements ISystemUiProxy, NavHandle, SafeCloseable {
     public static final MainThreadInitializedObject<SystemUiProxy> INSTANCE =
             new MainThreadInitializedObject<>(SystemUiProxy::new);
 
+    public static SystemUiProxy getInstance(Context context, ShizukuController controller) {
+        return controller.getSystemUiProxy();
+    }
+
     private static final int MSG_SET_SHELF_HEIGHT = 1;
     private static final int MSG_SET_LAUNCHER_KEEP_CLEAR_AREA_HEIGHT = 2;
 

@@ -193,6 +193,7 @@
 
         <!-- numAllAppsColumns defaults to numColumns, if not specified -->
         <attr name="numAllAppsColumns" format="integer" />
+        <attr name="numAllAppsColumnsLandscape" format="integer" />
         <!-- Number of columns to use when extending the all-apps size,
          defaults to 2 * numAllAppsColumns -->
         <attr name="numExtendedAllAppsColumns" format="integer" />

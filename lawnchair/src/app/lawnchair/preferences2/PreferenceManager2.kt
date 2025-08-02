@@ -604,8 +604,8 @@ class PreferenceManager2 private constructor(private val context: Context) :
         defaultValue = "",
     )
 
-    val enableTaskbarOnPhone = preference(
-        key = booleanPreferencesKey("enable_taskbar_on_phone"),
+    val enableTabletLayout = preference(
+        key = booleanPreferencesKey("enable_tablet_layout"),
         defaultValue = false,
         onSet = {
             reloadHelper.reloadGrid()

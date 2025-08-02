@@ -64,14 +64,10 @@
          android:restoreAnyVersion="true"
          android:supportsRtl="true">
 
-        <service android:name="com.android.quickstep.TouchInteractionService"
-             android:permission="android.permission.STATUS_BAR_SERVICE"
-             android:directBootAware="true"
-             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.QUICKSTEP_SERVICE"/>
-            </intent-filter>
-        </service>
+        <service
+            android:name="app.lawnchair.shizuku.ShizukuService"
+            android:permission="android.permission.MANAGE_USERS"
+            android:exported="true" />
 
         <activity android:name="com.android.quickstep.RecentsActivity"
              android:excludeFromRecents="true"

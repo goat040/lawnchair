@@ -120,7 +120,7 @@ fun QuickstepPreferences(
                 heading = stringResource(id = R.string.taskbar_label),
             ) {
                 SwitchPreference(
-                    adapter = prefs2.enableTaskbarOnPhone.getAdapter(),
+                    adapter = prefs2.enableTabletLayout.getAdapter(),
                     label = stringResource(id = R.string.enable_taskbar_experimental),
                 )
             }

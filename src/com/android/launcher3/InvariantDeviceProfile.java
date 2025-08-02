@@ -133,7 +133,8 @@ public class InvariantDeviceProfile implements SafeCloseable {
         public float[] iconTextSize;
         public int iconBitmapSize;
         public int fillResIconDpi;
-        public static @DeviceType int deviceType;
+        public static @DeviceType
+        int deviceType;
 
         public PointF[] minCellSize;
 
@@ -461,7 +462,7 @@ public class InvariantDeviceProfile implements SafeCloseable {
 
                 allAppsStyle = closestProfile.allAppsStyle;
 
-                numAllAppsColumns = closestProfile.numAllAppsColumns;
+                numAllAppsColumns = displayInfo.isLandscape() ? closestProfile.numAllAppsColumnsLandscape : closestProfile.numAllAppsColumns;
 
                 numDatabaseAllAppsColumns = deviceType == TYPE_MULTI_DISPLAY
                         ? closestProfile.numDatabaseAllAppsColumns : numAllAppsColumns;
@@ -908,6 +909,7 @@ public class InvariantDeviceProfile implements SafeCloseable {
 
                 private final @StyleRes int allAppsStyle;
                 public final int numAllAppsColumns;
+                public final int numAllAppsColumnsLandscape;
                 private final int mNumAllAppsRowsForCellHeightCalculation;
                 private final int numDatabaseAllAppsColumns;
                 public final int numHotseatIcons;
@@ -955,6 +957,8 @@ public class InvariantDeviceProfile implements SafeCloseable {
                                 R.style.AllAppsStyleDefault);
                         numAllAppsColumns = a.getInt(
                                 R.styleable.GridDisplayOption_numAllAppsColumns, numColumns);
+                        numAllAppsColumnsLandscape = a.getInt(
+                                R.styleable.GridDisplayOption_numAllAppsColumnsLandscape, numAllAppsColumns);
                         numDatabaseAllAppsColumns = a.getInt(
                                 R.styleable.GridDisplayOption_numExtendedAllAppsColumns, 2 * numAllAppsColumns);
 
