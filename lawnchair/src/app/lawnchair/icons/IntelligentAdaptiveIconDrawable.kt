@@ -71,8 +71,8 @@ class IntelligentAdaptiveIconDrawable(
 
         val distance = Math.sqrt(
             Math.pow((r1 - r2).toDouble(), 2.0) +
-            Math.pow((g1 - g2).toDouble(), 2.0) +
-            Math.pow((b1 - b2).toDouble(), 2.0)
+                Math.pow((g1 - g2).toDouble(), 2.0) +
+                Math.pow((b1 - b2).toDouble(), 2.0),
         )
 
         return distance < threshold
