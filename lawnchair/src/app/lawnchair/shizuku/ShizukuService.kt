@@ -49,4 +49,64 @@ class ShizukuService : ShizukuService() {
         val binder = getBinder("com.android.systemui.shared.recents.ISystemUiProxy")
         return ISystemUiProxy.Stub.asInterface(binder)
     }
+
+    private fun getPip(): IPip? {
+        val binder = getBinder("com.android.wm.shell.common.pip.IPip")
+        return IPip.Stub.asInterface(binder)
+    }
+
+    private fun getBubbles(): IBubbles? {
+        val binder = getBinder("com.android.wm.shell.bubbles.IBubbles")
+        return IBubbles.Stub.asInterface(binder)
+    }
+
+    private fun getSplitScreen(): ISplitScreen? {
+        val binder = getBinder("com.android.wm.shell.splitscreen.ISplitScreen")
+        return ISplitScreen.Stub.asInterface(binder)
+    }
+
+    private fun getOneHanded(): IOneHanded? {
+        val binder = getBinder("com.android.wm.shell.onehanded.IOneHanded")
+        return IOneHanded.Stub.asInterface(binder)
+    }
+
+    private fun getShellTransitions(): IShellTransitions? {
+        val binder = getBinder("com.android.wm.shell.shared.IShellTransitions")
+        return IShellTransitions.Stub.asInterface(binder)
+    }
+
+    private fun getStartingWindow(): IStartingWindow? {
+        val binder = getBinder("com.android.wm.shell.startingsurface.IStartingWindow")
+        return IStartingWindow.Stub.asInterface(binder)
+    }
+
+    private fun getRecentTasks(): IRecentTasks? {
+        val binder = getBinder("com.android.wm.shell.recents.IRecentTasks")
+        return IRecentTasks.Stub.asInterface(binder)
+    }
+
+    private fun getSysuiUnlockAnimationController(): ISysuiUnlockAnimationController? {
+        val binder = getBinder("com.android.systemui.shared.system.smartspace.ISysuiUnlockAnimationController")
+        return ISysuiUnlockAnimationController.Stub.asInterface(binder)
+    }
+
+    private fun getBackAnimation(): IBackAnimation? {
+        val binder = getBinder("com.android.wm.shell.back.IBackAnimation")
+        return IBackAnimation.Stub.asInterface(binder)
+    }
+
+    private fun getDesktopMode(): IDesktopMode? {
+        val binder = getBinder("com.android.wm.shell.desktopmode.IDesktopMode")
+        return IDesktopMode.Stub.asInterface(binder)
+    }
+
+    private fun getUnfoldAnimation(): IUnfoldAnimation? {
+        val binder = getBinder("com.android.systemui.unfold.progress.IUnfoldAnimation")
+        return IUnfoldAnimation.Stub.asInterface(binder)
+    }
+
+    private fun getDragAndDrop(): IDragAndDrop? {
+        val binder = getBinder("com.android.wm.shell.draganddrop.IDragAndDrop")
+        return IDragAndDrop.Stub.asInterface(binder)
+    }
 }
