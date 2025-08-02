@@ -100,6 +100,9 @@ class DeviceProfileOverrides(context: Context) : SafeCloseable {
         )
 
         fun applyUi(idp: InvariantDeviceProfile) {
+            if (enableTaskbarOnPhone) {
+                idp.deviceType = InvariantDeviceProfile.TYPE_TABLET
+            }
             // apply grid size
             idp.numAllAppsColumns = numAllAppsColumns
             idp.numDatabaseAllAppsColumns = numAllAppsColumns
