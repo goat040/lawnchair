@@ -21,6 +21,11 @@ plugins {
 
 
 allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://api.rikka.app/maven" }
+    }
     plugins.withType(AndroidBasePlugin).configureEach {
         android {
             buildToolsVersion "36.0.0"
