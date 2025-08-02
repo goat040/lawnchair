@@ -13,13 +13,12 @@ open class LawnchairAllAppsContainerView(
     attrs: AttributeSet?,
 ) : LauncherAllAppsContainerView(context, attrs) {
 
-    private val activity = ActivityContext.lookupContext<ActivityContext>(getContext())
     private val onBackPressedCallback = object : OnBackPressedCallback(false) {
         override fun handleOnBackPressed() {
             if (isSearching) {
                 mSearchUiManager.resetSearch()
             } else {
-                activity.stateManager.goToState(LauncherState.NORMAL)
+                mActivityContext.stateManager.goToState(LauncherState.NORMAL)
             }
         }
     }
@@ -28,7 +27,7 @@ open class LawnchairAllAppsContainerView(
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        activity.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+        mActivityContext.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onDetachedFromWindow() {
@@ -36,9 +35,8 @@ open class LawnchairAllAppsContainerView(
         onBackPressedCallback.remove()
     }
 
-    override fun onStateOrTransitionChanged() {
-        super.onStateOrTransitionChanged()
-        val isAllApps = activity.stateManager.state.allAppsActivityState.progress > 0
+    fun onStateOrTransitionChanged() {
+        val isAllApps = mActivityContext.stateManager.state.allAppsActivityState.progress > 0
         onBackPressedCallback.isEnabled = isAllApps
         if (!isAllApps) {
             mSearchUiManager.resetSearch()
